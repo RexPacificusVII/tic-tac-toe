@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './App.css';
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null)); // Initial empty board
+  const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
 
   const calculateWinner = () => {
@@ -36,9 +35,13 @@ function App() {
   };
 
   const renderSquare = (i) => {
+    const squareValue = board[i];
+
+    const squareClasses = `square ${squareValue === 'X' ? 'text-red-500' : 'text-blue-500'}`;
+
     return (
-      <button className="square" onClick={() => handleClick(i)}>
-        {board[i]}
+      <button className={squareClasses} onClick={() => handleClick(i)}>
+        {squareValue}
       </button>
     );
   };
@@ -46,8 +49,13 @@ function App() {
   const winner = calculateWinner();
   const status = winner ? `Winner: ${winner}` : `Player: ${xIsNext ? 'X' : 'O'}`;
 
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setXIsNext(true);
+  };
+
   return (
-    <div className="game">
+    <div className="game bg-gray-900">
       <h1 className='text-xl'>Tic Tac Toe</h1>
       <div className="game-board">
         <div className="board-row">
@@ -68,6 +76,14 @@ function App() {
       </div>
       <div className="game-info">
         <div>{status}</div>
+        {winner && (
+          <button
+            className="bg-blue-500 text-white px-2 py-1 mt-2"
+            onClick={resetGame}
+          >
+            Play Again?
+          </button>
+        )}
       </div>
     </div>
   );
