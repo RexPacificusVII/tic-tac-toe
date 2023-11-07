@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import chalkboard from "./assets/chalkboard.svg";
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -41,7 +42,7 @@ function App() {
   const renderSquare = (i) => {
     const squareValue = board[i];
 
-    const squareClasses = `square ${squareValue === 'X' ? 'text-red-500' : 'text-blue-500'}`;
+    const squareClasses = `square ${squareValue === 'X' ? 'bg-white text-center text-4xl opacity-75 text-red-500' : 'bg-white text-center text-4xl opacity-75 text-blue-500'}`;
 
     return (
       <button className={squareClasses} onClick={() => handleClick(i)}>
@@ -68,8 +69,9 @@ function App() {
   };
 
   return (
-    <div className="game bg-gray-900 w-screen h-screen text-white flex items-center justify-center">
-      <div className='flex flex-col items-center justify-center'>
+    <div className="game bg-chalkboard w-screen h-screen text-white relative overflow-hidden">
+      <img src={chalkboard} className='min-h-screen min-w-screen object-cover'/>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center'>
         <h1 className='text-xl'>Tic Tac Toe</h1>
         <div className="game-board flex flex-col">
           <div className="board-row flex">
