@@ -70,7 +70,7 @@ function App() {
       <div>
         Your turn,
         <br />
-        <span className={`text-${xIsNext ? '[#fba1bf]' : '[#7fcbf6]'}`}>Player: {xIsNext ? 'X' : 'O'}</span>
+        <span className={`text-${xIsNext ? '[#fba1bf]' : '[#7fcbf6]'}`}>Player {xIsNext ? 'X' : 'O'}</span>
       </div>
     );
   }
