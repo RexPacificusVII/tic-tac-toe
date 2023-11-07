@@ -55,20 +55,20 @@ function App() {
   };
 
   return (
-    <div className="game bg-gray-900">
+    <div className="game bg-gray-900 w-screen h-screen text-white">
       <h1 className='text-xl'>Tic Tac Toe</h1>
-      <div className="game-board">
-        <div className="board-row">
+      <div className="game-board flex flex-col">
+        <div className="board-row flex">
           {renderSquare(0)}
           {renderSquare(1)}
           {renderSquare(2)}
         </div>
-        <div className="board-row">
+        <div className="board-row flex">
           {renderSquare(3)}
           {renderSquare(4)}
           {renderSquare(5)}
         </div>
-        <div className="board-row">
+        <div className="board-row flex">
           {renderSquare(6)}
           {renderSquare(7)}
           {renderSquare(8)}
