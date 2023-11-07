@@ -64,7 +64,7 @@ function App() {
       </div>
     );
   } else if (isDraw) {
-    status = "Oops, no winner this time";
+    status = "Oops, no winner this time!";
   } else {
     status = (
       <div>
