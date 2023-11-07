@@ -26,6 +26,10 @@ function App() {
     return null;
   };
 
+  const isBoardFull = () => {
+    return board.every((square) => square !== null);
+  };
+
   const handleClick = (i) => {
     const newBoard = board.slice();
     if (calculateWinner() || newBoard[i]) return;
@@ -47,7 +51,16 @@ function App() {
   };
 
   const winner = calculateWinner();
-  const status = winner ? `Winner: ${winner}` : `Player: ${xIsNext ? 'X' : 'O'}`;
+  const isDraw = isBoardFull() && !winner;
+
+  let status;
+  if (winner) {
+    status = `Congratulations! You're the Tic-Tac-Toe Master, Player ${winner}`;
+  } else if (isDraw) {
+    status = "Oops, no winner this time";
+  } else {
+    status = `Player: ${xIsNext ? 'X' : 'O'}`;
+  }
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
@@ -55,35 +68,35 @@ function App() {
   };
 
   return (
-    <div className="game bg-gray-900 w-screen h-screen text-white">
-      <h1 className='text-xl'>Tic Tac Toe</h1>
-      <div className="game-board flex flex-col">
-        <div className="board-row flex">
-          {renderSquare(0)}
-          {renderSquare(1)}
-          {renderSquare(2)}
+    <div className="game bg-gray-900 w-screen h-screen text-white flex items-center justify-center">
+      <div className='flex flex-col items-center justify-center'>
+        <h1 className='text-xl'>Tic Tac Toe</h1>
+        <div className="game-board flex flex-col">
+          <div className="board-row flex">
+            {renderSquare(0)}
+            {renderSquare(1)}
+            {renderSquare(2)}
+          </div>
+          <div className="board-row flex">
+            {renderSquare(3)}
+            {renderSquare(4)}
+            {renderSquare(5)}
+          </div>
+          <div className="board-row flex">
+            {renderSquare(6)}
+            {renderSquare(7)}
+            {renderSquare(8)}
+          </div>
         </div>
-        <div className="board-row flex">
-          {renderSquare(3)}
-          {renderSquare(4)}
-          {renderSquare(5)}
-        </div>
-        <div className="board-row flex">
-          {renderSquare(6)}
-          {renderSquare(7)}
-          {renderSquare(8)}
-        </div>
-      </div>
-      <div className="game-info">
-        <div>{status}</div>
-        {winner && (
+        <div className="game-info flex flex-col items-center justify-center text-center">
+          <div>{status}</div>
           <button
-            className="bg-blue-500 text-white px-2 py-1 mt-2"
+            className={`bg-blue-500 text-white px-2 py-1 mt-2 ${!winner && !isDraw ? 'invisible' : ''}`}
             onClick={resetGame}
           >
             Play Again?
           </button>
-        )}
+        </div>
       </div>
     </div>
   );
