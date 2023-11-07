@@ -29,7 +29,7 @@ function App() {
 
   const handleClick = (i) => {
     const newBoard = board.slice();
-    if (calculateWinner() || newBoard[i]) return; // Return if game is won or square is already filled
+    if (calculateWinner() || newBoard[i]) return;
     newBoard[i] = xIsNext ? 'X' : 'O';
     setBoard(newBoard);
     setXIsNext(!xIsNext);
@@ -44,10 +44,11 @@ function App() {
   };
 
   const winner = calculateWinner();
-  const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
+  const status = winner ? `Winner: ${winner}` : `Player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
     <div className="game">
+      <h1 className='text-xl'>Tic Tac Toe</h1>
       <div className="game-board">
         <div className="board-row">
           {renderSquare(0)}
