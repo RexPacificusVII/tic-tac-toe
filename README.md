@@ -6,7 +6,7 @@ The game is built using React.js, a popular JavaScript library for building user
 
 This is part of the KodeGo excercises and is a good way to practice using React.js to create dynamic and interactive web pages.
 
-## Key features:
+## Key Features:
 
 - **React.js**: The game is built using React.js, a popular JavaScript library for building user interfaces.
 - **Tailwind CSS**: The game is styled using Tailwind CSS, a utility-first CSS framework.
