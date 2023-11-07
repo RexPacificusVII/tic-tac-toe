@@ -39,10 +39,10 @@ function App() {
     setXIsNext(!xIsNext);
   };
 
-  const renderSquare = (i) => {
+  const renderSquare = (i, withRightBorder) => {
     const squareValue = board[i];
 
-    const squareClasses = `square ${squareValue === 'X' ? 'bg-white text-center text-4xl opacity-75 text-red-500' : 'bg-white text-center text-4xl opacity-75 text-blue-500'}`;
+    const squareClasses = `square ${squareValue === 'X' ? 'text-7xl text-[#fba1bf]' : 'text-7xl text-[#7fcbf6]'} ${withRightBorder ? 'border-r-4 border-[#e0dfdb]' : ''}`;
 
     return (
       <button className={squareClasses} onClick={() => handleClick(i)}>
@@ -56,11 +56,23 @@ function App() {
 
   let status;
   if (winner) {
-    status = `Congratulations! You're the Tic-Tac-Toe Master, Player ${winner}`;
+    status = (
+      <div>
+        You're the Tic-Tac-Toe Master,
+        <br />
+        <span className={`text-${winner === 'X' ? '[#fba1bf]' : '[#7fcbf6]'}`}>Player {winner}!</span>
+      </div>
+    );
   } else if (isDraw) {
     status = "Oops, no winner this time";
   } else {
-    status = `Player: ${xIsNext ? 'X' : 'O'}`;
+    status = (
+      <div>
+        Your turn,
+        <br />
+        <span className={`text-${xIsNext ? '[#fba1bf]' : '[#7fcbf6]'}`}>Player: {xIsNext ? 'X' : 'O'}</span>
+      </div>
+    );
   }
 
   const resetGame = () => {
@@ -71,29 +83,29 @@ function App() {
   return (
     <div className="game bg-chalkboard w-screen h-screen text-white relative overflow-hidden">
       <img src={chalkboard} className='min-h-screen min-w-screen object-cover'/>
-      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center'>
-        <h1 className='text-xl'>Tic Tac Toe</h1>
-        <div className="game-board flex flex-col">
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center opacity-80'>
+        <h1 className='text-6xl font-bold underline'>Tic-Tac-Toe</h1>
+        <div className="game-board flex flex-col my-8">
           <div className="board-row flex">
-            {renderSquare(0)}
-            {renderSquare(1)}
+            {renderSquare(0, true)}
+            {renderSquare(1, true)}
             {renderSquare(2)}
           </div>
           <div className="board-row flex">
-            {renderSquare(3)}
-            {renderSquare(4)}
+            {renderSquare(3, true)}
+            {renderSquare(4, true)}
             {renderSquare(5)}
           </div>
-          <div className="board-row flex">
-            {renderSquare(6)}
-            {renderSquare(7)}
+          <div className="flex">
+            {renderSquare(6, true)}
+            {renderSquare(7, true)}
             {renderSquare(8)}
           </div>
         </div>
-        <div className="game-info flex flex-col items-center justify-center text-center">
-          <div>{status}</div>
+        <div className="flex flex-col items-center justify-center text-center text-4xl">
+          <div className=''>{status}</div>
           <button
-            className={`bg-blue-500 text-white px-2 py-1 mt-2 ${!winner && !isDraw ? 'invisible' : ''}`}
+            className={`px-2 py-1 mt-4 border-b-4 border-transparent hover:border-[#e0dfdb] text-[#fcee87] ${!winner && !isDraw ? 'invisible' : ''}`}
             onClick={resetGame}
           >
             Play Again?
