@@ -11,3 +11,9 @@ This is part of the KodeGo excercises and is a good way to practice using React.
 - **React.js**: The game is built using React.js, a popular JavaScript library for building user interfaces.
 - **Tailwind CSS**: The game is styled using Tailwind CSS, a utility-first CSS framework.
 - **Responsive design**: The game is responsive, meaning that it will look good and function well on all devices.
+
+## Possible Future Improvements:
+
+- **Single Player Mode**: Adding an option at the beginning for either single player(player vs. bot) mode or multiplayer(player vs. player) mode.
+- **Player Name**: Adding an input field after mode selection for the name to be used instead of the generic Player X/O.
+- **Score Tracker**: Adding a score tracker if within the same game instance (need to add a button to end the game to end the instance aside from restarting the game which only restarts the game instance).
